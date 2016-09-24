@@ -29,8 +29,6 @@ public class EnemySpawner : MonoBehaviour {
 
 	private Vector2 GenerateSpawnPositon (float radius = 30) {
 		Vector2 spawnPos = Random.insideUnitCircle.normalized * radius;
-		print (spawnPos);
 		return spawnPos;
-
 	}
 }

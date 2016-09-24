@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections;
 
 public class PlayerController : MonoBehaviour {
@@ -9,6 +10,12 @@ public class PlayerController : MonoBehaviour {
 	private void Update () {
 		RotateToMousePos ();
 		FireOnMouseClick ();
+	}
+
+	private void OnTriggerEnter2D (Collider2D trig) {
+		if (trig.tag == "enemy") {
+			ReloadScene ();
+		}
 	}
 
 	private void RotateToMousePos () {
@@ -33,5 +40,9 @@ public class PlayerController : MonoBehaviour {
 			transform.position,
 			transform.rotation
 		);
+	}
+
+	private void ReloadScene() {
+		SceneManager.LoadScene (SceneManager.GetActiveScene ().name, LoadSceneMode.Single);
 	}
 }

@@ -13,4 +13,11 @@ public class EnemyController : MonoBehaviour {
 	private void Update () {
 		transform.position = Vector3.Lerp (transform.position, Vector3.zero, moveSpeed * Time.deltaTime);
 	}
+
+	private void OnTriggerEnter2D (Collider2D trig) {
+		if (trig.tag == "projectile") {
+			Destroy (trig.gameObject);
+			Destroy (gameObject);
+		}
+	}
 }
