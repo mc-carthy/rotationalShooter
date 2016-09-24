@@ -3,10 +3,12 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour {
 
-
+	[SerializeField]
+	private GameObject projectile;
 
 	private void Update () {
 		RotateToMousePos ();
+		FireOnMouseClick ();
 	}
 
 	private void RotateToMousePos () {
@@ -17,5 +19,19 @@ public class PlayerController : MonoBehaviour {
 
 	private float AngleBetweenPoints (Vector2 a, Vector2 b) {
 		return Mathf.Atan2 (a.y - b.y, a.x - b.x) * Mathf.Rad2Deg; 
+	}
+
+	private void FireOnMouseClick () {
+		if (Input.GetMouseButtonDown (0)) {
+			InstantiateProjectile ();
+		}
+	}
+
+	private void InstantiateProjectile () {
+		Instantiate (
+			projectile,
+			transform.position,
+			transform.rotation
+		);
 	}
 }
